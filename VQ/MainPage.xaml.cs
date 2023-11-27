@@ -1,25 +1,35 @@
-﻿using VQ.ViewModel;
+﻿using Firebase.Database;
+using Firebase.Database.Query;
+using VQ.Models;
+using VQ.ViewModel;
 
 namespace VQ {
-    public partial class MainPage: ContentPage {
-        //int count = 0;
-
-        public MainPage(MainViewModel vm) {
+    public partial class MainPage : ContentPage
+    {
+        FirebaseClient firebaseClient = new FirebaseClient("https://fantastic-four-vq-default-rtdb.firebaseio.com/");
+        public MainPage(MainViewModel vm)
+        {
             InitializeComponent();
 
             //Set the context on the main page 
             BindingContext = vm;
         }
+        private async void OnButtonClicked(object sender, EventArgs e)
+        {
+            QueueItemModel queueItem = new QueueItemModel
+            {
+                Id = 1,
+                BusinessId = 2,
+                UserId = 3,
+                JoinTimestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                ExitTimestamp = null // You may set this as needed
+            };
 
-        //private void OnCounterClicked(object sender, EventArgs e) {
-        //    count++;
+            // Add QueueItem to Database
+            FirebaseObject<QueueItemModel> response = await firebaseClient.Child("QueueItems").PostAsync(queueItem);
+            InsertBtn.Text = $"Inserted with Key: {response.Key}";
 
-        //    if(count == 1)
-        //        CounterBtn.Text = $"Clicked {count} time";
-        //    else
-        //        CounterBtn.Text = $"Clicked {count} times";
-
-        //    SemanticScreenReader.Announce(CounterBtn.Text);
-        //}
+        }
     }
+
 }

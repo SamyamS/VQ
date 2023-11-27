@@ -12,10 +12,14 @@
           ColumnSpacing="10" 
           >
 
-        <Image Grid.Row="0"
-               Grid.ColumnSpan="2"
-               Source="dotnet_bot.png"
-               Aspect="AspectFit"/>
+        <Button
+            x:Name="InsertBtn"
+            Text="Inserts data into the database"
+            FontSize="12"
+            SemanticProperties.Hint="Inserts data into the database"
+            Clicked="OnButtonClicked"
+            LineBreakMode="WordWrap"
+            HorizontalOptions="FillAndExpand" />
 
         <Entry Placeholder="New queue item here"
                Text = "{Binding Text}"

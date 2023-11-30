@@ -12,6 +12,7 @@ namespace VQ.Models
         public string BusinessName { get; set; }
         public string BusinessLogo { get; set; }
         public string BusinessInformation { get; set; }
+        public int WaitingList { get; set; }
 
     }
 }

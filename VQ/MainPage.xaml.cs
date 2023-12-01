@@ -18,7 +18,6 @@ namespace VQ {
         {
             QueueItemModel queueItem = new QueueItemModel
             {
-                Id = 1,
                 BusinessId = 2,
                 UserId = 3,
                 JoinTimestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),

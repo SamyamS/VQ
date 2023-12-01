@@ -3,45 +3,108 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VQ.Pages.BusinessPage"
              Title="BusinessPage">
+    <StackLayout>
+        <Label Text="Current Queues" 
+               FontSize="Medium" 
+               FontAttributes="Bold" 
+               FontFamily="SegoeUI-Bold"
+               HorizontalOptions="CenterAndExpand" />
 
-            <CollectionView x:Name="collectionView" ItemsLayout="VerticalList"> 
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <!--<VerticalStackLayout BackgroundColor="Bisque" Padding="5" Margin="5" >
+        <CollectionView x:Name="waitingView" ItemsLayout="VerticalList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!--<VerticalStackLayout BackgroundColor="Bisque" Padding="5" Margin="5" >
                             <Label Text="{Binding .}"/>
 
                         </VerticalStackLayout>-->
 
-                        <Frame Margin="10">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width=".2*" />
+                    <Frame Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".2*" />
 
-                                    <ColumnDefinition Width=".8*" />
-                                    <ColumnDefinition Width=".4*" />
+                                <ColumnDefinition Width=".8*" />
+                                <ColumnDefinition Width=".4*" />
 
-                                </Grid.ColumnDefinitions>
+                            </Grid.ColumnDefinitions>
 
-                                <Image Source="{Binding BusinessLogo}" Grid.Column="0" Grid.Row="0"/>
-                                <VerticalStackLayout Grid.Column="1" Grid.Row="0" Padding="5" VerticalOptions="Center">
-                                    <Label Text="{Binding BusinessName}" FontSize="Medium" FontAttributes="Bold" />
-                                    <Label Text="{Binding BusinessInformation}" FontAttributes="Italic" />
-                                </VerticalStackLayout>
-                               <VerticalStackLayout Grid.Column="2" Grid.Row="0" Padding="5" >
-                                    <Label Text="{ Binding WaitingList}" FontSize="Small" FontAttributes="Bold" />
-                                   <Button Text="Join"/>
-                                    <!--<Label Text="{Binding Details}" FontAttributes="Italic" />-->
-                                </VerticalStackLayout>
-                               
+                            <Image Source="{Binding BusinessLogo}" Grid.Column="0" Grid.Row="0"/>
+                            <VerticalStackLayout Grid.Column="1" Grid.Row="0" Padding="5" VerticalOptions="Center">
+                                <Label Text="{Binding BusinessName}" FontSize="Medium" FontAttributes="Bold" />
+                                <Label Text="{Binding BusinessInformation}" FontAttributes="Italic" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="2" Grid.Row="0" Padding="5" >
+                                <Label Text="{ Binding WaitingList}" FontSize="Small" FontAttributes="Bold" />
 
-                            </Grid>
+                                <Button x:Name="LeaveButton"
+                                    Text="Leave"
+                                    Clicked="LeaveQueueButton"
+                                    CommandParameter="{Binding Id}"
+                                        BackgroundColor="Red"/>
+                                <!--<Label Text="{Binding Details}" FontAttributes="Italic" />-->
+                            </VerticalStackLayout>
 
-                        </Frame>
 
-                    </DataTemplate>
+                        </Grid>
 
-                </CollectionView.ItemTemplate>
+                    </Frame>
 
-            </CollectionView>
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <Label Text="Joinable Queues" 
+               FontSize="Medium" 
+               FontAttributes="Bold" 
+               FontFamily="SegoeUI-Bold"
+               HorizontalOptions="CenterAndExpand" />
+
+        <CollectionView x:Name="notWaitingView" ItemsLayout="VerticalList">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <!--<VerticalStackLayout BackgroundColor="Bisque" Padding="5" Margin="5" >
+                                <Label Text="{Binding .}"/>
+
+                            </VerticalStackLayout>-->
+
+                    <Frame Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".2*" />
+
+                                <ColumnDefinition Width=".8*" />
+                                <ColumnDefinition Width=".4*" />
+
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="{Binding BusinessLogo}" Grid.Column="0" Grid.Row="0"/>
+                            <VerticalStackLayout Grid.Column="1" Grid.Row="0" Padding="5" VerticalOptions="Center">
+                                <Label Text="{Binding BusinessName}" FontSize="Medium" FontAttributes="Bold" />
+                                <Label Text="{Binding BusinessInformation}" FontAttributes="Italic" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="2" Grid.Row="0" Padding="5" >
+                                <Label Text="{ Binding WaitingList}" FontSize="Small" FontAttributes="Bold" />
+
+                                <Button x:Name="JoinButton"
+                                        Text="Join"
+                                        Clicked="JoinQueueButton"
+                                        CommandParameter="{Binding Id}"
+                                        BackgroundColor="Lime"/>
+                                <!--<Label Text="{Binding Details}" FontAttributes="Italic" />-->
+                            </VerticalStackLayout>
+
+
+                        </Grid>
+
+                    </Frame>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </StackLayout>
 </ContentPage>
